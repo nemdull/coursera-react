@@ -1,70 +1,50 @@
-# Getting Started with Create React App
+# firstapp
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+プロジェクト概要
+React アプリの雛形として Hello world 的な表示と Heading コンポーネントを用いた基本的な構造を示す。現状は最小構成で、今後の拡張ポイントを読み手に伝える設計思想を含む。
 
-## Available Scripts
+技術スタック
+- 言語: JavaScript (ECMAScript 2021)
+- フレームワーク/ライブラリ: React 18, React DOM, React Scripts (CRA 5.0.1)
+- テスト: React Testing Library, Jest DOM, User Event
+- ビルド/実行: Create React App（react-scripts）
+- Lint/設定: ESLint 設定 (eslintConfig)
+- 包含ファイル: package.json, package-lock.json, src/, public/
+- CI/CD: 現状 CI 設定ファイルは本リポジトリには含まれていない想定（今後の追加を推奨）
 
-In the project directory, you can run:
+主な機能一覧
+- Hello world の見出しを表示する UI
+- App.js は Heading コンポーネントをレンダリング
+- Header と Heading の2つの小さなコンポーネント分割の設計
+- App.test.js に React Testing Library を使ったテストの雛形が存在
 
-### `npm start`
+設計・実装の工夫
+- コンポーネント分割: Header, Heading の2つの小さなコンポーネントを用意
+- テスト戦略の雛形: App.test.js はユニットテストの基本構造を示す
+- 最小構成での SPA: ルート構成とコンポーネントの組み合わせによる単純な UI
+- 設定の透明性: package.json の依存関係とスクリプトを明示
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+セットアップ & 動作確認方法
+- ローカル環境
+  - npm install
+  - npm start で開発サーバ起動
+  - npm test でテスト実行
+- 動作確認の手順
+  - ブラウザで http://localhost:3000 を開く
+  - Heading がレンダリングされることを確認
+- Docker 実行手順
+  - Docker 化は現状想定外（別途検討推奨）
+- 実行ログの確認
+  - 変更や追加は、適切なコミットメッセージで追跡
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+改善ポイント / TODO（リポジトリから抽出し、カテゴリ分けして整理）
+- テスト: App.test.js の期待文字列と表示内容の整合性を確認・修正
+- 設計: Header コンポーネントの活用を拡張
+- エラーハンドリング: ネットワークエラー等の取り扱いの追加検討
+- CI/CD: lint/テストの自動実行を追加することを推奨
+- ドキュメント: CONTRIBUTING や CODE_OF_CONDUCT の追加検討
+- パフォーマンス/品質: テストカバレッジ拡張、静的解析・Lintルールの強化
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+強調したいポイント
+- React 18 ベースの最小構成で、コンポーネント分割とテストの雛形を示している点
+- 将来的な拡張性を意識した設計思想
