@@ -1,79 +1,84 @@
-# FirstApp
+## FirstApp
 
-A minimal React app scaffold. This repository demonstrates a tiny component structure with a Heading component and an optional Header component, suitable for quick UI prototyping and learning CRA basics. The README summarizes what can be inferred from the source, configuration, and commit history.
+数分で把握できる最小構成の React アプリ。Heading/ Header などの小さな関数コンポーネントと、CRA 標準のビルド・テスト体制を基盤に、学習・試作を素早く始められるように設計しています。
 
 ---
 
 ## 技術スタック
 
-- 言語/ランタイム: JavaScript (React)
-- フレームワーク/ツール: React 18, react-scripts 5.0.1
-- テスト: @testing-library/react, @testing-library/jest-dom, @testing-library/user-event
-- IDE/構築: CRAベースの構成（package.jsonに start/build/test/eject スクリプト）
-- CSS/スタイル: App.css, index.css
-- 依存関係の管理: npm
+- 言語/ランタイム: JavaScript, Node.js
+- ライブラリ: React 18 (`react`, `react-dom`)
+- ビルド/開発: `react-scripts` 5 (Create React App)
+- テスト: `@testing-library/react`, `@testing-library/jest-dom`, `@testing-library/user-event`
+- パフォーマンス計測: `web-vitals`
+- スタイル: `App.css`, `index.css`
+- パッケージ管理: npm
 
-注: 現在のリポジトリには CD/CI の設定ファイル (.github/workflows など) が検出されません。今後の拡張として CI/CD の追加が推奨されます。
+根拠:
+- 依存関係は `firstapp/package.json:1` に記載
+- CRA 構成とスクリプトは `firstapp/package.json:12` の `scripts` を参照
 
 ---
 
-## 主な機能一覧
+## 主な機能
 
-- Hello world 相当のUIを表示する Heading コンポーネント
-- App.js が Heading をレンダリングするシンプルな構成
-- Header コンポーネントが定義されているが、現状は使用されていない
-- CSS の分離: App.css および index.css のインポート
+- Heading 表示: メイン画面に H1 見出しを表示（`firstapp/src/App.js:11`）
+- StrictMode でのレンダリング: 予期せぬ副作用の検知（`firstapp/src/index.js:9`）
+- Web Vitals 測定の導線: `reportWebVitals` を呼び出し（`firstapp/src/index.js:16`）
+- PWA 関連メタデータ: `manifest.json` や各種アイコン（`firstapp/public/manifest.json:1`）
 
 ---
 
 ## 設計・実装の工夫
 
-- 単一責任の小さなコンポーネント構成: Heading と Header の2つの関数型コンポーネントを定義
-- 明確なエントリポイント: App が主コンポーネントとして Heading を返す設計
-- CSS 分離によるスタイル管理: App.css と index.css を活用
-- 最小構成でのテスト準備: src/App.test.js が存在し、テストの枠組みをすぐに拡張可能
+- 小さな関数コンポーネント: `Heading`/`Header` を関数として定義し、責務を限定（`firstapp/src/App.js:4`）
+- 明確なエントリポイント: `App` が単一の UI を返し、拡張しやすい形に分離（`firstapp/src/App.js:11`）
+- 標準的なテスト足場: `jest-dom` と Testing Library を導入済み（`firstapp/src/setupTests.js:1`）
+- パフォーマンス測定の拡張性: Web Vitals を遅延 import で計測（`firstapp/src/reportWebVitals.js:1`）
 
-設計上の留意点:
-- Header は現状未使用なので、将来的な拇指拡張を想定したプレースホルダとして残されている
-- 現状のコードは非常にシンプルで学習目的に適している一方、UIを拡張する場合はルーティングや prop の導入を検討する余地がある
-
----
-
-## セットアップと動作確認
-
-1) 依存関係のインストール
-- コマンド: npm install
-
-2) ローカル開発サーバの起動
-- コマンド: npm start
--  http://localhost:3000 を開く
-
-3) ビルド
-- コマンド: npm run build
-
-4) テストの実行
-- コマンド: npm test
+ディレクトリのポイント:
+- `src/` に UI/エントリ/テストを集約、`public/` に HTML/manifest/アイコンを配置（`firstapp/public/index.html:1`）
 
 ---
 
-## 改善ポイント / TODO
+## セットアップ & 動作確認
 
-- テスト
-  - src/App.test.js は存在するが、Header/Heading の追加テストを実装してカバレッジを向上させる
-- 設計
-  - Header が未使用の現状を解消するか、アプリ構成に組み込む検討
-  - コンポーネント分割を拡張して props を導入する設計を検討
-- CI/CD
-  - GitHub Actions 等のワークフローを追加して、lint/test/build の自動実行を実現する
-- ドキュメント
-  - 将来の拡張ポイントや使い方を追加することで、初学者にも優しいガイドを提供
+前提: Node.js と npm をインストール済み。
+
+- 依存関係インストール: `npm install`
+- 開発サーバ起動: `npm start`（`http://localhost:3000`）
+- 本番ビルド: `npm run build`
+- テスト実行: `npm test`
+
+メモ:
+- パフォーマンス測定をログ出力する場合は、`firstapp/src/index.js:13` のコメントに従い `reportWebVitals(console.log)` を渡してください。
 
 ---
 
-## 強調したいポイント
+## 改善ポイント / TODO（事実に基づく）
 
-- 極めてシンプルな構成ながら、テストの枠組みと明確な責務分離を備えた学習用の出発点
-- Header の未使用という現状から、設計の改善余地とリファクタリングの機会を示唆
-- 依存関係と npm-scripts によるビルド・テストの実行方法が明示されている
+- テスト: `App.test.js` は "learn react" に依存する初期テンプレートのまま（`firstapp/src/App.test.js:5`）。`Heading` の描画に合わせて期待値を更新し、`Header` も含めたユニットテストを追加。
+- 設計: `Header` は未使用（`firstapp/src/App.js:14` のコメントアウト）。意図（将来利用/例示）を README に明文化、または UI に組み込むか削除を検討。
+- アクセシビリティ: 見出し階層やランドマークの導入、`aria-*` の検討。
+- CI/CD: GitHub Actions 等で `install -> lint -> test -> build` を自動化（本リポジトリにワークフローは未検出）。
+- 品質: ESLint/Prettier のプロジェクトルールを明示化（必要に応じて設定ファイルを追加）。
 
+---
 
+## 強調したいポイント（スキル/工夫）
+
+- テンプレート依存からの脱却と最小 UI 設計: 初期 CRA から不要要素をそぎ落とし、学習・検証に最適化。
+- 拡張容易性: StrictMode・Testing Library・Web Vitals など将来の品質向上に繋がる足場を保持。
+- 明示的な改善リスト: テスト/設計/CI の観点で次の一手を提示。
+
+---
+
+## 補足（ファイル参照）
+
+- 依存関係とスクリプト: `firstapp/package.json:1`
+- 入口 HTML: `firstapp/public/index.html:1`
+- マニフェスト: `firstapp/public/manifest.json:1`
+- ルート: `firstapp/src/index.js:1`
+- アプリ本体: `firstapp/src/App.js:1`
+- テスト: `firstapp/src/App.test.js:1`, `firstapp/src/setupTests.js:1`
+- パフォーマンス: `firstapp/src/reportWebVitals.js:1`
